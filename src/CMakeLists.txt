@@ -302,9 +302,10 @@ if(USE_STATIC_MOLTENVK)
     )
 endif()
 
-if(OPENMP_FOUND)
+if(OpenMP_LIBRARY)
+    list(APPEND REALESRGAN_LINK_LIBRARIES ${OpenMP_LIBRARY})
+elseif(OPENMP_FOUND)
     list(APPEND REALESRGAN_LINK_LIBRARIES ${OpenMP_CXX_LIBRARIES})
 endif()
 
 target_link_libraries(realesrgan-ncnn-vulkan ${REALESRGAN_LINK_LIBRARIES} -static-libstdc++)
-
